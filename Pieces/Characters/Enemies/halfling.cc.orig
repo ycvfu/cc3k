@@ -1,0 +1,62 @@
+#include "halfling.h"
+#include "enemy.h"
+#include <cstdlib>
+<<<<<<< HEAD
+#include <math.h>
+
+=======
+#include <iostream>
+#include <cmath> 
+#include <iomanip>
+>>>>>>> 8ec02ed41b0cd325ae3592d6a641410814997620
+
+Halfling::Halfling(int row, int col) : Enemy{15, 20, 100, row, col, 0} {}
+    
+bool Halfling::attack(Character * character){
+    int x = character->getX() - row;
+    int y = character->getY() - col;
+    if(((x <= 1) || (x >= -1)) && ((y <= 1) || (y >= -1))) {
+    int new_gold = character->defend(this);
+    //not slain will return -1
+    if(new_gold == -1) return false;
+    if(new_gold > 0) gold = gold + new_gold;
+    return true;
+    }
+}
+
+
+
+
+//plAYER
+
+int Halfling::defend(Character *attacker) {
+    std::cout<< "defending" << std::endl;
+    int prob = 1 ;  
+    if(prob) {
+<<<<<<< HEAD
+    int y = ceil(100/(100 + defence)) * attacker->getatk();
+    HP = HP - y;
+=======
+    std::cout<<defence << "atk" << attacker->getatk()<<std::endl;
+    double  y = (100/(100 + defence)) * attacker->getatk();
+    y = std::ceil(y);
+    std::cout << y << std::endl;
+int k = y;
+    HP = HP - k;
+    std::cout<< HP << std::endl;
+>>>>>>> 8ec02ed41b0cd325ae3592d6a641410814997620
+    if(HP > 0) return -1;
+    return 2;
+    } else {
+        return -1;
+    }
+}
+
+char Halfling::canPrintType() {
+    return 'L';
+}
+
+bool Halfling:: move_enemy(int relativeX, int relativeY){ 
+     return Enemy::move_enemy(relativeX, relativeY);
+}
+
